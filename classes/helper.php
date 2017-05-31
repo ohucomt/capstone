@@ -21,6 +21,18 @@
 			return htmlentities($string);
 		}
 
+		public static function checkEmpty($post){
+			if($post){
+				foreach($post as $item => $value){
+				if(empty($value)){
+					Message::setMsg("You can not leave there fied blank", "danger");
+					Helper::redirect("user/register");
+					exit();
+				}
+			}
+			}
+		}
+
 
 	}
 ?>

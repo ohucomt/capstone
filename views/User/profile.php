@@ -5,9 +5,11 @@
                 <hr>
                 <div class="container text-center">
                     <div class="view overlay hm-white-strong">
-                        <img style="overflow: hidden;" src="https://mdbootstrap.com/img/Photos/Horizontal/People/6-col/img%20(7).jpg" class="" alt="Your avatar">
-                        <div class="mask flex-center waves-effect">
-                            <p class="white-text"><a href="#" class="btn btn-xs btn-link waves-effect">Change</a></p>
+                        <img style="overflow: hidden;" src="<?= ROOT_PATH ?>uploads/user/avt/<?=$_SESSION['user_data']['avatar']?>" class="" alt="Your avatar">
+                        <div class="mask flex-center waves-effect" >
+                            <form class="form-inline" action="<?= ROOT_PATH.'profile/changeAvt'?>" enctype="multipart/form-data" method="post" id="abc">
+                                <p class="white-text" onclick="uploadFunction()" id="changebtn"><a href="#" class="btn btn-xs btn-link waves-effect">Change</a></p>
+                            </form>
                         </div>
                     </div>
                     <hr class="divider">
@@ -35,3 +37,20 @@
         </div>
     </div>
 </div>
+<script>
+    function uploadFunction(){
+        var x = document.createElement("INPUT");
+        x.setAttribute("type", "file");
+        x.setAttribute("name", "avatar");
+        x.setAttribute("class", "form-control");
+        var y = document.createElement("INPUT");
+        y.setAttribute("type", "submit");
+        y.setAttribute("name" , "submit");
+        y.setAttribute("class", "btn btn-info");
+        document.getElementById("abc").appendChild(x);
+        document.getElementById("abc").appendChild(y);
+
+        document.getElementById("changebtn").style.visibility = 'hidden';
+
+    }
+</script>

@@ -23,5 +23,11 @@
 			$viewmodel = new ProfileModel();
 			$this->returnView($viewmodel->dob(), true);
 		}
+
+		public function changeAvt(){
+			Helper::loginCheck();
+			$viewmodel = new ProfileModel();
+			$this->returnView($viewmodel->changeAvt($_FILES), false);
+		}
 	}
 ?>

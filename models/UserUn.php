@@ -1,17 +1,7 @@
 <?php
 	class UserModel extends Model{
 
-		public function checkEmpty($post){
-			if($post){
-				foreach($post as $item => $value){
-				if(empty($value)){
-					Message::setMsg("You can not leave there fied blank", "danger");
-					Helper::redirect("user/register");
-					exit();
-				}
-			}
-			}
-		}
+		
 
 		public function checkValiable($str){
 			$this->connectDB();
@@ -34,9 +24,27 @@
 			}
 		}
 
+
+
 		public function Register(){
 			$this->checkValiable($_POST['username']);
 			$this->checkValiable($_POST['email']);
+			$memo = $_POST;
+			Helper::checkEmpty($memo);
+			if($memo['submit'] == 'submit'){
+				if(strcmp($memo['password'], $memo['re-password']) !== 0){
+					Message::setMsg("Your password does not match");
+					Helper::redirect('user/register');
+					exit();
+				}else{
+					$this->query = "insert into users()";
+				}
+			}
+
+			
+
+
+
 		}
 
 		public function profile($id){
@@ -69,8 +77,13 @@
 							'email' => $row['email'],
 							'id' => $row['id'],
 							'dob' => $row['dob'],
-							'gender' => $row['gender']
+							'gender' => $row['gender'],
+							'avatar' => $row['avatar']
 							);
+
+					if(empty($_SESSION['user_data']['avatar'])){
+						$_SESSION['user_data']['avatar'] = 'default.jpg';
+					}
 					Helper::redirect('memo/index');
 					exit();
 				}else{

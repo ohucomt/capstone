@@ -1,21 +1,21 @@
 
-
 <div class="card-block">
     <div>
         <h3><i class="fa fa-pencil"> New Memo:</i></h3>
         <hr class="mt-2 mb-2">
     </div>
     <form method="post" action="<?=ROOT_PATH.'memo/add'?>">
-        <div class="md-form">
+
+        <div class="md-form" id="inputTitle">
           <input type="text" name="title" id="title" class="form-control">
           <label for="title">Title</label>
         </div>
         <div class="md-form">
-            <textarea class="md-textarea validate" id="form1" type="text" name="body" require></textarea>
+            <textarea class="md-textarea validate" id="form1" type="text" name="body" onfocus="showTakeNote()" onfocusout="hideTakeNote(this.value)" require></textarea>
             <label for="form1">Take a note...</label>
         </div>
 
-        <div class="form-inline">
+        <div class="form-inline" id='colorPicker'>
 
             <fieldset class="form-group">
                 <input name="group1" type="radio" id="radio11"  value="danger-color">
@@ -60,11 +60,31 @@
         </div>
         
         <div class="text-right">
-            <button class="btn btn-success" type="submit" name="submit" value="submit">Add</button>
+            <button class="btn btn-success" id="submitBtn" type="submit" name="submit" value="submit">Add</button>
         </div>
         
     </form>
 </div>
+
+<script type="text/javascript">
+  document.getElementById('inputTitle').style.visibility = 'hidden';
+  document.getElementById('colorPicker').style.visibility = 'hidden';
+  document.getElementById('submitBtn').style.visibility = 'hidden';
+  function hideTakeNote(value){
+    if(value.length < 1){
+      document.getElementById('inputTitle').style.visibility = 'hidden';
+      document.getElementById('colorPicker').style.visibility = 'hidden';
+      document.getElementById('submitBtn').style.visibility = 'hidden';
+    }
+  }
+
+  function showTakeNote(){
+    document.getElementById('inputTitle').style.visibility = 'visible';
+    document.getElementById('colorPicker').style.visibility = 'visible';
+    document.getElementById('submitBtn').style.visibility = 'visible';
+  }
+</script>
+
 
 <div class="card-columns">
     <?php
