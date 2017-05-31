@@ -59,6 +59,7 @@
 					$this->query = "update users set avatar = '$fileName' where id = '$id'";
 					$this->connectDB();
 					$this->sendQuery();
+					$_SESSION['user_data']['avatar'] = $fileName;
 
 
 					Message::setMsg("Your avatar has been changed!", "success");
