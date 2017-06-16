@@ -23,7 +23,7 @@
 			<p><strong>Password</strong></p>
 			<p>You should change your password every 3 months.</p>
 			<hr class="divider">
-			<a href="<?= ROOT_PATH.'profile/chgpwd'?>">Change password</a>
+			<a href="<?= ROOT_PATH.'profile/changePassword'?>">Change password</a>
 		</div>
 	</div>
 	<div class="extra-margin"><p> </p></div>

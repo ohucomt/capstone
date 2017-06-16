@@ -7,7 +7,7 @@
                     <div class="view overlay hm-white-strong">
                         <img style="overflow: hidden;" src="<?= ROOT_PATH ?>uploads/user/avt/<?=$_SESSION['user_data']['avatar']?>" class="" alt="Your avatar Your avatar Your avatar Your avatar Your avatar Your avatar Your avatar Your avatar Your avatar Your avatar Your avatar Your avatar Your avatar Your avatar Your avatar Your avatar Your avatar Your avatar">
                         <div class="mask flex-center waves-effect" >
-                            <form class="form-inline" action="<?= ROOT_PATH.'profile/changeAvt'?>" enctype="multipart/form-data" method="post" id="abc">
+                            <form class="form-inline" action="<?= ROOT_PATH.'profile/changeAvatar'?>" enctype="multipart/form-data" method="post" id="abc">
                                 <p class="white-text" onclick="uploadFunction()" id="changebtn"><a href="#" class="btn btn-xs btn-link waves-effect">Change</a></p>
                             </form>
                         </div>

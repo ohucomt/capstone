@@ -1,33 +1,34 @@
 <?php
 	class Profile extends Controller{
-		public function chgpwd(){
+
+		public function changeName(){
 			Helper::loginCheck();
 			$viewmodel = new ProfileModel();
-			$this->returnView($viewmodel->chgpwd(), true);
+			$this->returnView($viewmodel->changename(), true);
 		}
 
-		public function name(){
+		public function changeEmail(){
 			Helper::loginCheck();
 			$viewmodel = new ProfileModel();
-			$this->returnView($viewmodel->name(), true);
+			$this->returnView($viewmodel->changeemail(), true);
 		}
 
-		public function email(){
+		public function changeDoB(){
 			Helper::loginCheck();
 			$viewmodel = new ProfileModel();
-			$this->returnView($viewmodel->email(), true);
+			$this->returnView($viewmodel->changedob(), true);
 		}
 
-		public function dob(){
+		public function changeAvatar(){
 			Helper::loginCheck();
 			$viewmodel = new ProfileModel();
-			$this->returnView($viewmodel->dob(), true);
+			$this->returnView($viewmodel->changeAvatar($_FILES), false);
 		}
 
-		public function changeAvt(){
+		public function changePassword(){
 			Helper::loginCheck();
 			$viewmodel = new ProfileModel();
-			$this->returnView($viewmodel->changeAvt($_FILES), false);
+			$this->returnView($viewmodel->changePassword(), true);
 		}
 	}
 ?>

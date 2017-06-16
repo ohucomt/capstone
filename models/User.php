@@ -46,70 +46,38 @@
 			
 		}
 
-		// public function Login(){
-		// 	print_r($_POST);
-		// 	$user = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-		// 	if(isset($user['submit'])){
-		// 		$this->query("
-		// 			SELECT * FROM users WHERE 
-		// 			username = :username and password = :password
-		// 			");
-		// 		$this->bind(":username", $user['username']);
-		// 		$this->bind(":password", $user['password']);
-		// 		$row = $this->singleResultSet();
-		// 		if(!empty($row)){
-		// 			Message::setMsg("logged id", "success");
-		// 			$_SESSION['is_login'] = true;
-		// 			$_SESSION['user_data'] = array(
-		// 				'username' => $row['username'],
-		// 				'first_name' => $row['first_name'],
-		// 				'last_name' => $row['last_name'],
-		// 				'email' => $row['email'],
-		// 				'id' => $row['id']
-		// 				);
-		// 			Helper::redirect("memo/index");
-		// 			exit();
-		// 		}else{
-		// 			Message::setMsg("Please enter you username and password correctly!", "danger");
-		// 			Helper::redirect("user/login");
-		// 			exit();
-
-		// 		}
-		// 	}
-		// }
-
 		public function Login(){
-
-
-			if(isset($_POST['submit'])){
-				$connect = $this->connectDB();
-
-				$username = $_POST['username'];
-				$password = $_POST['password'];
-				$this->query = "select * from users where username = '$username' and password = '$password'";
-
-				$this->sendQuery();
-
-				$count = $this->returnCount();
-				$row = $this->getRow();
-				if($count){
-					Message::setMsg("You are now login", "success");
-					$_SESSION['is_login'] = 1;
+			print_r($_POST);
+			$user = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+			if(isset($user['submit'])){
+				$this->query("
+					SELECT * FROM users WHERE 
+					username = :username and password = :password
+					");
+				$this->bind(":username", $user['username']);
+				$this->bind(":password", $user['password']);
+				$row = $this->singleResultSet();
+				if(!empty($row)){
+					Message::setMsg("logged id", "success");
+					$_SESSION['is_login'] = true;
 					$_SESSION['user_data'] = array(
-							'username' => $row['username'],
-							'first_name' => $row['first_name'],
-							'last_name' => $row['last_name'],
-							'email' => $row['email'],
-							'id' => $row['id']
-							);
-					Helper::redirect('memo/index');
+						'username' => $row['username'],
+						'first_name' => $row['first_name'],
+						'last_name' => $row['last_name'],
+						'email' => $row['email'],
+						'id' => $row['id']
+						);
+					Helper::redirect("memo/index");
 					exit();
 				}else{
-					Message::setMsg("Wrong username or password", "danger");
+					Message::setMsg("Please enter you username and password correctly!", "danger");
 					Helper::redirect("user/login");
 					exit();
+
 				}
 			}
 		}
+
+
 	}
 ?>
