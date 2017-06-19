@@ -37,7 +37,25 @@
 					Helper::redirect('user/register');
 					exit();
 				}else{
-					$this->query = "insert into users()";
+					$first_name = $memo['first_name'];
+					$last_name = $memo['last_name'];
+					$dob = $memo['dob'];
+					$gender = $memo['gender'];
+					$email = $memo['email'];
+					$username = $memo['username'];
+					$password = $memo['password'];
+
+					$this->query = "
+					INSERT INTO users(first_name, last_name, dob, gender, email, username, password)
+					VALUES('$first_name', '$last_name', '$dob', '$gender', '$email', '$username', '$password')
+					";	
+
+					$this->connectDB();
+					$this->sendQuery();
+
+					Message::setMsg("Register successfully, please login!","success");
+					Helper::redirect('user/login');
+					exit();
 				}
 			}
 

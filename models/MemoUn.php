@@ -1,5 +1,30 @@
 <?php
 	class MemoModel extends Model{
+		protected function checkAuthozire($id){
+			$user_id = $_SESSION['user_data']['id'];
+			$this->query = "select share from memos where user_id = '$user_id' and id = '$id'";
+			$this->connectDB();
+			$this->sendQuery();
+
+			$result = $this->getRow();
+			if(!$result){
+				Message::setMsg("You dont have right to do it", "danger");
+				Helper::redirect("memo");
+				exit();
+			}
+		}
+
+		protected function isShare($id){
+			$this->query = "select share from memos where id = '$id'";
+			$this->connectDB();
+			$this->sendQuery();
+
+			$result = $this->getRow();
+			$result = $result['share'];
+			return $result;
+		}
+###########################################################################################
+
 		public function index(){
 			//return;
 			$id = $_SESSION['user_data']['id'];
@@ -13,6 +38,7 @@
 		}
 
 		public function edit($id){
+			$this->checkAuthozire($id);
 			$this->query = "select * from memos where id = '$id'";
 			$this->connectDB();
 			$this->sendQuery();
@@ -34,6 +60,7 @@
 		}
 
 		public function delete($id){
+			$this->checkAuthozire($id);
 			$this->query = "delete from memos where id = '$id'";
 			$this->connectDB();
 			$this->sendQuery();
@@ -62,6 +89,38 @@
 				exit();
 			}
 		}
+
+		public function share($id){
+			$this->checkAuthozire($id);
+
+			if(!$this->isShare($id)){
+				$this->query = "
+				update memos set share = '1' where id = '$id'
+				";
+				$this->connectDB();
+				$this->sendQuery();
+
+			}
+
+			return $id;
+		}
+
+
+		public function view($id){
+			if($this->isShare($id)){
+				$this->query = "select * from memos where id = '$id'";
+				$this->connectDB();
+				$this->sendQuery();
+
+				$result = $this->getRow();
+
+				return $result;
+
+			}else{
+				return 0;
+			}
+		}
+
 	}
 
 

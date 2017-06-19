@@ -11,7 +11,7 @@
           <label for="title">Title</label>
         </div>
         <div class="md-form">
-            <textarea class="md-textarea validate" id="form1" type="text" name="body" onfocus="showTakeNote()" onfocusout="hideTakeNote(this.value)" require></textarea>
+            <textarea class="md-textarea validate" id="form1" type="text" name="body" onfocus="showTakeNote()" require></textarea>
             <label for="form1">Take a note...</label>
         </div>
 
@@ -70,13 +70,6 @@
   document.getElementById('inputTitle').style.visibility = 'hidden';
   document.getElementById('colorPicker').style.visibility = 'hidden';
   document.getElementById('submitBtn').style.visibility = 'hidden';
-  function hideTakeNote(value){
-    if(value.length < 1){
-      document.getElementById('inputTitle').style.visibility = 'hidden';
-      document.getElementById('colorPicker').style.visibility = 'hidden';
-      document.getElementById('submitBtn').style.visibility = 'hidden';
-    }
-  }
 
   function showTakeNote(){
     document.getElementById('inputTitle').style.visibility = 'visible';
@@ -96,7 +89,7 @@
             <div class="card-block ">
                 <div class="card-title ">
                    <div class="row">
-                       <div class="col-md-9">
+                       <div class="col-md-8">
                           <h3 class="card-title"><?= $item['title']?></h3>
                           <small style="font-size: 0.8em;"><?= $item['created_date']?></small>
                        </div>
@@ -106,6 +99,10 @@
             
                        <div class="col-md-1">
                            <a href="<?=ROOT_PATH.'memo/delete/'.$item['id']?>" onclick="return confirm('Are you sure?')"><i class="fa fa-trash" ></i></a>
+                       </div>
+
+                       <div class="col-md-1">
+                         <a href="<?=ROOT_PATH.'memo/share/'.$item['id']?>"><i class="fa fa-share-alt"></i></a>
                        </div>
                    </div>
                 </div>

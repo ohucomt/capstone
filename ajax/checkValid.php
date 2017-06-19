@@ -1,4 +1,5 @@
 <?php
+	header('Access-Control-Allow-Origin: *'); 
 	require("../classes/ModelUn.php");
 	require("../config.php");
 	class checkValid extends Model{

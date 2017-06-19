@@ -24,5 +24,16 @@
 			$viewmodel = new MemoModel();
 			$this->returnView($viewmodel->edit($this->request['id']), true);
 		}
+
+		protected function share(){
+			Helper::loginCheck();
+			$viewmodel = new MemoModel();
+			$this->returnView($viewmodel->share($this->request['id']), true);
+		}
+
+		protected function view(){
+			$viewmodel = new MemoModel();
+			$this->returnView($viewmodel->view($this->request['id']), true);
+		}
 	}
 ?>
