@@ -7,5 +7,5 @@
 
 	//define URL
 	define("ROOT_PATH", "/mymemo/");
-	define("ROOT_URL", "https://192.168.153.128/mymemo/");
+	define("ROOT_URL", (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]"."/mymemo/");
 ?>

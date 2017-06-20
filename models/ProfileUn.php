@@ -1,5 +1,19 @@
 <?php
 	class ProfileModel extends Model{
+		private function checkPasswordIsCorrect($str){
+			$userId = $_SESSION['user_data']['id'];
+			$this->query = "select password from users where id = '$userId'";
+			$this->connectDB();
+			$this->sendQuery();
+			$oldPassword = $this->getRow();
+			if(strcmp($str, $oldPassword['password']) !== 0){
+				return false;
+			}else{
+				return true;
+			}
+		}
+
+
 		public function changePassword(){
 			if($_POST['submit']){
 				$memo = $_POST;
@@ -77,7 +91,7 @@
 				$userId = $_SESSION['user_data']['id'];
 
 				$this->connectDB();
-				$this->query = "update users set dob = '$dob' where id = '$id'";
+				$this->query = "update users set dob = '$dob' where id = '$userId'";
 				$this->sendQuery();
 				$_SESSION['user_data']['dob'] = $dob;
 
@@ -129,18 +143,24 @@
 			}
 		}
 
+		public function changeGender(){
+			if($_POST['submit']){
+				$memo = $_POST;
+				$gender = $memo['gender'];
 
-		private function checkPasswordIsCorrect($str){
-			$userId = $_SESSION['user_data']['id'];
-			$this->query = "select password from users where id = '$userId'";
-			$this->connectDB();
-			$this->sendQuery();
-			$oldPassword = $this->getRow();
-			if(strcmp($str, $oldPassword['password']) !== 0){
-				return false;
-			}else{
-				return true;
+				$userId = $_SESSION['user_data']['id'];
+
+				$this->connectDB();
+				$this->query = "update users set gender = '$gender' where id = '$userId'";
+				$this->sendQuery();
+				$_SESSION['user_data']['gender'] = $gender;
+
+				Message::setMsg("Your gender has been changed!", "success");
+				Helper::redirect("user/profile".$userId."/info");
+				exit();
+
 			}
 		}
+
 	}
 ?>

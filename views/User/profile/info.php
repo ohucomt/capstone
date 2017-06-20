@@ -21,6 +21,7 @@
 		<a class="list-group-item hoverable" href="<?=ROOT_PATH.'profile/changeName'?>">Name</a>
 		<a class="list-group-item hoverable" href="<?=ROOT_PATH.'profile/changeemail'?>">Email</a>
 		<a class="list-group-item hoverable" href="<?=ROOT_PATH.'profile/changedob'?>">Date of birth</a>
+		<a class="list-group-item hoverable" href="<?=ROOT_PATH.'profile/changegender'?>">Gender</a>
 	</div>
 	<div class="extra-margin"><p> </p></div>
 </div>

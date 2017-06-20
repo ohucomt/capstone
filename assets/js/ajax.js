@@ -10,7 +10,7 @@
                     document.getElementById("email").innerHTML = this.responseText;
                 }
             };
-            xmlhttp.open("GET", "http://192.168.153.128/mymemo/ajax/checkValid.php?r=email&q="+str, true);
+            xmlhttp.open("GET", "/mymemo/ajax/checkValid.php?r=email&q="+str, true);
             xmlhttp.send();
         }
     }
@@ -26,7 +26,7 @@
                     document.getElementById("user").innerHTML = this.responseText;
                 }
             };
-            xmlhttp.open("GET", "http://192.168.153.128/mymemo/ajax/checkValid.php?r=username&q="+str, true);
+            xmlhttp.open("GET", "/mymemo/ajax/checkValid.php?r=username&q="+str, true);
             xmlhttp.send();
         }
     }

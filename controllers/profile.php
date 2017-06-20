@@ -30,5 +30,11 @@
 			$viewmodel = new ProfileModel();
 			$this->returnView($viewmodel->changePassword(), true);
 		}
+
+		public function changeGender(){
+			Helper::loginCheck();
+			$viewmodel = new ProfileModel();
+			$this->returnView($viewmodel->changeGender(), true);
+		}
 	}
 ?>
